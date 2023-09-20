@@ -16,7 +16,7 @@
       <a class="header_button text text_small" target="_BLANK" href="https://github.com/suvmer">GITHUB</a>
     </header>
     <main class="main">
-        <div class="card">
+        <div style="display: none" class="card">
           <p>Нахождение f(y + y0)</p>
           <label for="p1" class="text text_small">Введите первый многочлен</label>
           <input id="p1"/>
@@ -24,11 +24,16 @@
           <p id="out1"/>
         </div>
         <div class="card">
-          <p>Нахождение f(y + y0)</p>
+          <p>Проверка формул</p>
           <label for="p2" class="text text_small">Введите формулу для проверки</label>
-          <input id="p2"/>
+          <div class="input-wrapper">
+            <input autofocus id="p2"/>
+            <button id="backspace" class="button button_noborder">⌫</button>
+          </div>
           <p class="text text_small">Результат:</p>
           <p id="out2"/>
+          <div id="buttons" class="tiles operators"></div>
+          <div id="symbols" class="tiles symbols"></div>
         </div>
     </main>
     <footer class="footer text text_small text_strong">@2023 suvmer</footer>
