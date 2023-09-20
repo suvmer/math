@@ -17,7 +17,14 @@ const brackets = ["(", ")"];
 const binary = ["⇔", "⇒", "⊕", "∨", "∧"];
 const unary = ["¬"];
 document.querySelector("#backspace").addEventListener("click", (event) => {
-    elems.inputs.p2.value = elems.inputs.p2.value.length > 0 ? elems.inputs.p2.value.slice(0, -1) : "";
+    if(elems.inputs.p2.value.length == 0)
+        return;
+    let prev = elems.inputs.p2.selectionStart;
+    let newValue = elems.inputs.p2.value.substring(0, prev-1) + elems.inputs.p2.value.substring(prev);
+    elems.inputs.p2.value = newValue;// event.target.innerHTML;
+    elems.inputs.p2.selectionStart = Math.max(0, prev - 1);
+    elems.inputs.p2.selectionEnd = Math.max(0, prev - 1);
+    updateCheck(newValue)
 });
 
 const addToKeyboard = (nodeName, values, ...classNames) => {
@@ -30,8 +37,6 @@ const addToKeyboard = (nodeName, values, ...classNames) => {
             let prev = elems.inputs.p2.selectionStart;
             let text = event.target.innerHTML;
             
-            const ev = new KeyboardEvent('keydown', { key: text });
-            elems.inputs.p2.dispatchEvent(ev);
             let newValue = elems.inputs.p2.value.substring(0, prev) +
             text + elems.inputs.p2.value.substring(prev);
             elems.inputs.p2.value = newValue;// event.target.innerHTML;
